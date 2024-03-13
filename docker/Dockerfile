@@ -18,6 +18,8 @@ ENV COMPOSER_HOME /composer
 ENV PATH $PATH:/composer/vendor/bin
 
 
-WORKDIR /var/www
+WORKDIR /var/www/server
 
 RUN composer global require "laravel/installer"
+
+CMD ["php", "artisan", "serve", "--host=0.0.0.0"]
