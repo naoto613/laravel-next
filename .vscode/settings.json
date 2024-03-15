@@ -1,0 +1,33 @@
+{
+  "typescript.preferences.importModuleSpecifier": "non-relative",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "eslint.format.enable": true,
+  "eslint.alwaysShowStatus": true,
+  "editor.detectIndentation": false,
+  "typescript.validate.enable": true,
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  "jestrunner.jestCommand": "yarn run test:api:separately",
+  "workbench.colorCustomizations": {
+    "activityBar.activeBackground": "#11c3b3",
+    "activityBar.background": "#11c3b3",
+    "activityBar.foreground": "#15202b",
+    "activityBar.inactiveForeground": "#15202b99",
+    "activityBarBadge.background": "#bc12cd",
+    "activityBarBadge.foreground": "#e7e7e7",
+    "commandCenter.border": "#e7e7e799",
+    "sash.hoverBorder": "#11c3b3",
+    "statusBar.background": "#0d9488",
+    "statusBar.foreground": "#e7e7e7",
+    "statusBarItem.hoverBackground": "#11c3b3",
+    "statusBarItem.remoteBackground": "#0d9488",
+    "statusBarItem.remoteForeground": "#e7e7e7",
+    "titleBar.activeBackground": "#0d9488",
+    "titleBar.activeForeground": "#e7e7e7",
+    "titleBar.inactiveBackground": "#0d948899",
+    "titleBar.inactiveForeground": "#e7e7e799"
+  },
+  "peacock.color": "#0d9488"
+}
