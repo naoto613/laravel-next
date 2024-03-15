@@ -11,7 +11,7 @@ import axios from 'axios'
 import Head from 'next/head'
 import React from 'react'
 
-const Detail = ({ detail }) => {
+const Detail = ({ detail, media_type, media_id }) => {
   return (
     <AppLayout
       header={
@@ -120,20 +120,17 @@ const Detail = ({ detail }) => {
             <FavoriteIcon />
           </IconButton> */}
 
-              <Typography paragraph>{detail.overview}</Typography>
+              <Typography paragraph>
+                {detail.overview.length > 100
+                  ? `${detail.overview.substring(0, 100)}...`
+                  : detail.overview}
+              </Typography>
 
-              {/* 文字が非常に長い場合は以下のようにして省略することもできます */}
-              {/* <Typography paragraph>
-                                {detail.overview.length > 100
-                                    ? `${detail.overview.substring(0, 100)}...`
-                                    : detail.overview}
-                            </Typography> */}
-
-              {/* <Typography variant="h6">
-            {media_type == 'movie'
-              ? `公開日: ${detail.release_date}`
-              : `初回放送日: ${detail.first_air_date}`}
-          </Typography> */}
+              <Typography variant="h6">
+                {media_type == 'movie'
+                  ? `公開日: ${detail.release_date}`
+                  : `初回放送日: ${detail.first_air_date}`}
+              </Typography>
             </Grid>
           </Grid>
         </Container>

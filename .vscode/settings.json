@@ -11,23 +11,24 @@
   },
   "jestrunner.jestCommand": "yarn run test:api:separately",
   "workbench.colorCustomizations": {
-    "activityBar.activeBackground": "#11c3b3",
-    "activityBar.background": "#11c3b3",
+    "activityBar.activeBackground": "#8553b3",
+    "activityBar.background": "#6153b3",
     "activityBar.foreground": "#15202b",
     "activityBar.inactiveForeground": "#15202b99",
     "activityBarBadge.background": "#bc12cd",
     "activityBarBadge.foreground": "#e7e7e7",
     "commandCenter.border": "#e7e7e799",
-    "sash.hoverBorder": "#11c3b3",
-    "statusBar.background": "#0d9488",
+    "sash.hoverBorder": "#1153b3",
+    "statusBar.background": "#055488",
     "statusBar.foreground": "#e7e7e7",
-    "statusBarItem.hoverBackground": "#11c3b3",
-    "statusBarItem.remoteBackground": "#0d9488",
+    "statusBarItem.hoverBackground": "#1153b3",
+    "statusBarItem.remoteBackground": "#059488",
     "statusBarItem.remoteForeground": "#e7e7e7",
-    "titleBar.activeBackground": "#0d9488",
+    "titleBar.activeBackground": "#024488",
     "titleBar.activeForeground": "#e7e7e7",
-    "titleBar.inactiveBackground": "#0d948899",
+    "titleBar.inactiveBackground": "#05248899",
     "titleBar.inactiveForeground": "#e7e7e799"
   },
-  "peacock.color": "#0d9488"
+  "peacock.color": "#0d9488",
+  "cSpell.words": ["laravel"]
 }
