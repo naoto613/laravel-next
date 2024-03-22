@@ -29,20 +29,20 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-      $validatedData = $request->validate([
-        'content' => 'required|string|max:200',
-        'review_id' => 'required|integer|exists:reviews,id',
-      ]);
+        $validatedData = $request->validate([
+            'content' => 'required|string|max:200',
+            'review_id' => 'required|integer|exists:reviews,id',
+        ]);
 
-      $comment = Comment::create([
-          'user_id' => Auth::id(),
-          'content' => $validatedData['content'],
-          'review_id' => $validatedData["review_id"],
-      ]);
+        $comment = Comment::create([
+            'user_id' => Auth::id(),
+            'content' => $validatedData['content'],
+            'review_id' => $validatedData['review_id'],
+        ]);
 
-      $comment->load('user');
+        $comment->load('user');
 
-      return response()->json($comment);
+        return response()->json($comment);
     }
 
     /**
@@ -67,16 +67,16 @@ class CommentController extends Controller
     public function update(Request $request, Comment $comment)
     {
         //念のため
-        if(Auth::id() !== $comment->user_id) {
-            return response()->json(["msg" => "あなたに更新する権限はありません"], 401);
+        if (Auth::id() !== $comment->user_id) {
+            return response()->json(['msg' => 'あなたに更新する権限はありません'], 401);
         }
 
         $validatedData = $request->validate([
-          'content' => 'required|string|max:200',
+            'content' => 'required|string|max:200',
         ]);
 
         $comment->update([
-          'content' => $validatedData['content'],
+            'content' => $validatedData['content'],
         ]);
 
         return response()->json($comment);
@@ -88,6 +88,7 @@ class CommentController extends Controller
     public function destroy(Comment $comment)
     {
         $comment->delete();
-        return response()->json(["message" => "正常にコメントを削除しました。"]);
+
+        return response()->json(['message' => '正常にコメントを削除しました。']);
     }
 }

@@ -44,7 +44,7 @@ class ReviewController extends Controller
             'content' => $validatedData['content'],
             'rating' => $validatedData['rating'],
             'media_type' => $validatedData['media_type'],
-            'media_id' => $validatedData["media_id"],
+            'media_id' => $validatedData['media_id'],
         ]);
 
         $review->load('user');
@@ -57,8 +57,9 @@ class ReviewController extends Controller
      */
     public function show(Review $review)
     {
-      $review->load('user', 'comments.user');
-      return response()->json($review);
+        $review->load('user', 'comments.user');
+
+        return response()->json($review);
     }
 
     /**
@@ -74,17 +75,17 @@ class ReviewController extends Controller
      */
     public function update(Request $request, Review $review)
     {
-      $validatedData = $request->validate([
-        'content' => 'required|string',
-        'rating' => 'required|integer',
-      ]);
+        $validatedData = $request->validate([
+            'content' => 'required|string',
+            'rating' => 'required|integer',
+        ]);
 
-      $review->update([
-          'content' => $validatedData['content'],
-          'rating' => $validatedData['rating'],
-      ]);
+        $review->update([
+            'content' => $validatedData['content'],
+            'rating' => $validatedData['rating'],
+        ]);
 
-      return response()->json($review);
+        return response()->json($review);
     }
 
     /**
@@ -92,7 +93,8 @@ class ReviewController extends Controller
      */
     public function destroy(Review $review)
     {
-      $review->delete();
-      return response()->json(["message" => "正常にレビューを削除しました。"]);
+        $review->delete();
+
+        return response()->json(['message' => '正常にレビューを削除しました。']);
     }
 }

@@ -10,8 +10,8 @@ class Favorite extends Model
     use HasFactory;
 
     protected $fillable = [
-      'media_type',
-      'media_id',
-      'user_id'
+        'media_type',
+        'media_id',
+        'user_id',
     ];
 }

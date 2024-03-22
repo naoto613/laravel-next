@@ -6,6 +6,12 @@
   "editor.detectIndentation": false,
   "typescript.validate.enable": true,
   "editor.formatOnSave": true,
+  "laravel-pint.enable": true,
+  "laravel-pint.enableDebugLogs": true,
+  "laravel-pint.configPath": "server/pint.json",
+  "[php]": {
+    "editor.defaultFormatter": "open-southeners.laravel-pint"
+  },
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit"
   },

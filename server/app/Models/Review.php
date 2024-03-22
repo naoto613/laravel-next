@@ -14,7 +14,7 @@ class Review extends Model
         'rating',
         'media_type',
         'media_id',
-        'user_id'
+        'user_id',
     ];
 
     public function user()
