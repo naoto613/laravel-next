@@ -8,6 +8,7 @@ import {
   Fab,
   Grid,
   Rating,
+  IconButton,
   TextareaAutosize,
   Tooltip,
   Typography,
@@ -21,6 +22,7 @@ import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 import AddIcon from '@mui/icons-material/Add'
 import StarIcon from '@mui/icons-material/Star'
+import FavoriteIcon from '@mui/icons-material/Favorite'
 import { useAuth } from '@/hooks/auth'
 
 const Detail = ({ detail, media_type, media_id }) => {
@@ -32,6 +34,7 @@ const Detail = ({ detail, media_type, media_id }) => {
   const [editMode, setEditMode] = useState(null) // 編集中のレビューIDを保持します
   const [editedContent, setEditedContent] = useState('') // 編集中のレビュー内容
   const [editedRating, setEditedRating] = useState(0) // 編集中のレビューの星の数
+  const [isFavorited, setIsFavorited] = useState(false)
 
   const { user } = useAuth({ middleware: 'auth' })
 
@@ -42,27 +45,24 @@ const Detail = ({ detail, media_type, media_id }) => {
   useEffect(() => {
     const fetchReviews = async () => {
       try {
-        // const [ReviewResponse, favoriteResponse] = await Promise.all([
-        //     laravelAxios.get(`/api/reviews/${media_type}/${media_id}`),
-        //     laravelAxios.get(`/api/favorites/status`, {
-        //         params: {
-        //             media_type: media_type,
-        //             media_id: media_id,
-        //         },
-        //     }),
-        // ])
-        const ReviewResponse = await laravelAxios.get(
-          `/api/reviews/${media_type}/${media_id}`,
-        )
+        const [reviewResponse, favoriteResponse] = await Promise.all([
+          laravelAxios.get(`/api/reviews/${media_type}/${media_id}`),
+          laravelAxios.get(`/api/favorites/status`, {
+            params: {
+              media_type: media_type,
+              media_id: media_id,
+            },
+          }),
+        ])
 
         //一度fetchedReviewsに格納しているのは確実に値を代入するため
-        const fetchedReviews = ReviewResponse.data
+        const fetchedReviews = reviewResponse.data
         setReviews(fetchedReviews)
 
         // 星の数を計算する関数
         updateAverageRating(fetchedReviews)
 
-        // setIsFavorited(favoriteResponse.data)
+        setIsFavorited(favoriteResponse.data)
       } catch (err) {
         console.error(err.fetchedReviews)
       }
@@ -189,6 +189,21 @@ const Detail = ({ detail, media_type, media_id }) => {
     }
   }
 
+  //お気に入りボタンを押したときの処理
+  const handleToggleFavorite = async () => {
+    try {
+      const response = await laravelAxios.post(`api/favorites/`, {
+        media_type: media_type,
+        media_id: media_id,
+      })
+
+      //フロント更新
+      setIsFavorited(response.data.status === 'added')
+    } catch (err) {
+      console.error(err.response)
+    }
+  }
+
   return (
     <AppLayout
       header={
@@ -288,14 +303,14 @@ const Detail = ({ detail, media_type, media_id }) => {
                 </Typography>
               </Box>
 
-              {/* <IconButton
-            onClick={handleToggleFavorite}
-            style={{
-              color: isFavorited ? '#F067A6' : 'white',
-              backgroundColor: '#0d253f',
-            }}>
-            <FavoriteIcon />
-          </IconButton> */}
+              <IconButton
+                onClick={handleToggleFavorite}
+                style={{
+                  color: isFavorited ? '#F067A6' : 'white',
+                  backgroundColor: '#0d253f',
+                }}>
+                <FavoriteIcon />
+              </IconButton>
 
               <Typography paragraph>
                 {detail.overview.length > 100

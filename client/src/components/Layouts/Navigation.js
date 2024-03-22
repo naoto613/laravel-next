@@ -37,6 +37,12 @@ const Navigation = ({ user }) => {
                 active={router.pathname === '/home'}>
                 Home
               </NavLink>
+
+              <NavLink
+                href="/favorites"
+                active={router.pathname === '/favorites'}>
+                お気に入り
+              </NavLink>
             </div>
           </div>
 
